@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "288066863412",
+    "project_id": "folks-64218",
+    "storage_bucket": "folks-64218.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:288066863412:android:cafd7450c38ec495eee561",
+        "android_client_info": {
+          "package_name": "com.example.folks"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBN_7EyOx9Fbbnl06miKYOse0IWB6mMig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
