@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:folks/pages/login_page.dart';
 import 'package:folks/pages/splash_page.dart';
 import 'package:folks/services/navigation_service.dart';
 
@@ -23,6 +24,8 @@ class MainApp extends StatelessWidget {
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
               backgroundColor: Color.fromRGBO(30, 29, 37, 1.0))),
       navigatorKey: NavigationService.navigatorKey,
+      initialRoute: '/login',
+      routes: {'/login': (BuildContext _context) => LoginPage()},
     );
   }
 }
