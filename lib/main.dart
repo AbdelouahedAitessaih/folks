@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:folks/pages/login_page.dart';
 import 'package:folks/pages/splash_page.dart';
+import 'package:folks/providers/authentication_provider.dart';
 import 'package:folks/services/navigation_service.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(SplashPage(
@@ -16,16 +18,23 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Folks',
-      theme: ThemeData(
-          backgroundColor: Color.fromRGBO(36, 35, 49, 1.0),
-          scaffoldBackgroundColor: Color.fromRGBO(36, 35, 49, 1.0),
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
-              backgroundColor: Color.fromRGBO(30, 29, 37, 1.0))),
-      navigatorKey: NavigationService.navigatorKey,
-      initialRoute: '/login',
-      routes: {'/login': (BuildContext _context) => LoginPage()},
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AutheticationProvider>(
+          create: (BuildContext _contxt) => AutheticationProvider(),
+        )
+      ],
+      child: MaterialApp(
+        title: 'Folks',
+        theme: ThemeData(
+            backgroundColor: const Color.fromRGBO(36, 35, 49, 1.0),
+            scaffoldBackgroundColor: const Color.fromRGBO(36, 35, 49, 1.0),
+            bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+                backgroundColor: Color.fromRGBO(30, 29, 37, 1.0))),
+        navigatorKey: NavigationService.navigatorKey,
+        initialRoute: '/login',
+        routes: {'/login': (BuildContext _context) => const LoginPage()},
+      ),
     );
   }
 }
