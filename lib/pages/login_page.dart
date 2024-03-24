@@ -1,23 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:folks/providers/authentication_provider.dart';
+import 'package:folks/services/navigation_service.dart';
 import 'package:folks/widgets/custom_input_fields.dart';
 import 'package:folks/widgets/rounded_button.dart';
+import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({Key key}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  late double _deviceHeight;
-  late double _deviceWidth;
-
   final _formKey = GlobalKey<FormState>();
+
+  double _deviceHeight;
+  double _deviceWidth;
+
+  AutheticationProvider _auth;
+  NavigationService _navigation;
+
+  String _email;
+  String _password;
+
   @override
   Widget build(BuildContext context) {
     _deviceHeight = MediaQuery.of(context).size.height;
     _deviceWidth = MediaQuery.of(context).size.width;
+    _auth = Provider.of<AutheticationProvider>(context);
+    _navigation = GetIt.instance.get<NavigationService>();
     return _pageUi();
   }
 
@@ -74,14 +87,18 @@ class _LoginPageState extends State<LoginPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CustomTextFormField(
-              onSaved: (_value) => {},
+              onSaved: (_value) => setState(() {
+                _email = _value;
+              }),
               regEx:
                   r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
               hintText: "Email",
               obscureText: false,
             ),
             CustomTextFormField(
-              onSaved: (_value) => {},
+              onSaved: (_value) => setState(() {
+                _password = _value;
+              }),
               regEx: r".{8,}",
               hintText: "Password",
               obscureText: true,
@@ -95,7 +112,12 @@ class _LoginPageState extends State<LoginPage> {
   Widget _loginButton() {
     return RoundedButton(
         title: "Login",
-        onPressed: () => {},
+        onPressed: () {
+          if (_formKey.currentState.validate()) {
+            _formKey.currentState.save();
+            _auth.login(_email, _password);
+          }
+        },
         height: _deviceHeight * 0.065,
         width: _deviceWidth * 0.65);
   }

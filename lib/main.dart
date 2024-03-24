@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:folks/pages/home_page.dart';
 import 'package:folks/pages/login_page.dart';
 import 'package:folks/pages/splash_page.dart';
 import 'package:folks/providers/authentication_provider.dart';
@@ -14,7 +15,7 @@ void main() {
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({Key? key}) : super(key: key);
+  const MainApp({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +26,7 @@ class MainApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Folks',
         theme: ThemeData(
             backgroundColor: const Color.fromRGBO(36, 35, 49, 1.0),
@@ -33,7 +35,10 @@ class MainApp extends StatelessWidget {
                 backgroundColor: Color.fromRGBO(30, 29, 37, 1.0))),
         navigatorKey: NavigationService.navigatorKey,
         initialRoute: '/login',
-        routes: {'/login': (BuildContext _context) => const LoginPage()},
+        routes: {
+          '/login': (BuildContext _context) => const LoginPage(),
+          '/home': (BuildContext _context) => const HomePage()
+        },
       ),
     );
   }

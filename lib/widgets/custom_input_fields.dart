@@ -7,29 +7,25 @@ class CustomTextFormField extends StatelessWidget {
   final bool obscureText;
 
   const CustomTextFormField(
-      {Key? key,
-      required this.onSaved,
-      required this.regEx,
-      required this.hintText,
-      required this.obscureText})
+      {Key key, this.onSaved, this.regEx, this.hintText, this.obscureText})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      onSaved: (_value) => onSaved(_value!),
+      onSaved: (_value) => onSaved(_value),
       cursorColor: Colors.white,
       style: TextStyle(color: Colors.white),
       obscureText: obscureText,
       validator: (_value) =>
-          RegExp(regEx).hasMatch(_value!) ? null : "Enter a valid value.",
+          RegExp(regEx).hasMatch(_value) ? null : "Enter a valid value.",
       decoration: InputDecoration(
           fillColor: Color.fromRGBO(30, 29, 37, 1.0),
           filled: true,
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.0),
               borderSide: BorderSide.none),
-          helperText: hintText,
+          hintText: hintText,
           hintStyle: TextStyle(color: Colors.white54)),
     );
   }

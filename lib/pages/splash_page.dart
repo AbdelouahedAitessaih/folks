@@ -8,8 +8,7 @@ import 'package:get_it/get_it.dart';
 
 class SplashPage extends StatefulWidget {
   final VoidCallback onInitializationComplete;
-  const SplashPage({Key? key, required this.onInitializationComplete})
-      : super(key: key);
+  const SplashPage({Key key, this.onInitializationComplete}) : super(key: key);
 
   @override
   State<SplashPage> createState() => _SplashPageState();
@@ -36,7 +35,7 @@ class _SplashPageState extends State<SplashPage> {
           child: Container(
             height: 200,
             width: 200,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 image: DecorationImage(
                     fit: BoxFit.contain,
                     image: AssetImage('assets/images/logo.jpg'))),

@@ -5,35 +5,35 @@ class ChatUser {
   final String email;
   final String password;
   final String imageUrl;
-  late DateTime lastActive;
+  final DateTime lastActive;
 
   ChatUser(
-      {required this.uid,
-      required this.firstName,
-      required this.lastName,
-      required this.email,
-      required this.password,
-      required this.imageUrl,
-      required this.lastActive});
+      {this.uid,
+      this.firstName,
+      this.lastName,
+      this.email,
+      this.password,
+      this.imageUrl,
+      this.lastActive});
 
   factory ChatUser.fromJson(Map<String, dynamic> _json) {
     return ChatUser(
         uid: _json['uid'],
-        firstName: _json['firstName'],
-        lastName: _json['lastName'],
+        firstName: _json['first_name'],
+        lastName: _json['last_name'],
         email: _json['email'],
-        password: _json['password'],
-        imageUrl: _json['imageUrl'],
-        lastActive: _json['lastActive'].toDate());
+        // password: _json['password'],
+        imageUrl: _json['image_url'],
+        lastActive: _json['last_active'].toDate());
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'firstName': firstName,
-      'lastName': lastName,
+      'first_name': firstName,
+      'last_name': lastName,
       'email': email,
-      'imageUrl': imageUrl,
-      'lastActive': lastActive
+      'image_url': imageUrl,
+      'last_active': lastActive
     };
   }
 
