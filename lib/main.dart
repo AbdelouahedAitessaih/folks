@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:folks/pages/home_page.dart';
 import 'package:folks/pages/login_page.dart';
+import 'package:folks/pages/register_page.dart';
 import 'package:folks/pages/splash_page.dart';
 import 'package:folks/providers/authentication_provider.dart';
 import 'package:folks/services/navigation_service.dart';
@@ -36,8 +37,9 @@ class MainApp extends StatelessWidget {
         navigatorKey: NavigationService.navigatorKey,
         initialRoute: '/login',
         routes: {
+          '/home': (BuildContext _context) => const HomePage(),
           '/login': (BuildContext _context) => const LoginPage(),
-          '/home': (BuildContext _context) => const HomePage()
+          '/register': (BuildContext _context) => const RegisterPage()
         },
       ),
     );

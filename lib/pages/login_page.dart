@@ -36,6 +36,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _pageUi() {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         padding: EdgeInsets.symmetric(
             horizontal: _deviceWidth * 0.03, vertical: _deviceHeight * 0.02),
@@ -124,7 +125,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _signUpLink() {
     return GestureDetector(
-      onTap: () => {},
+      onTap: () => _navigation.navigateToRoute('/register'),
       child: Container(
         child: const Text(
           "Don't have an account ?",
